@@ -1,16 +1,17 @@
 defmodule Inmana.Restaurant do
+  alias Inmana.Supply
   use Ecto.Schema
   import Ecto.Changeset
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @required_params [:email, :name]
-
   @derive {Jason.Encoder, only: @required_params ++ [:id]}
 
   schema "restaurants" do
     field :email, :string
     field :name, :string
 
+    has_many :supplies, Supply
     timestamps()
   end
 
